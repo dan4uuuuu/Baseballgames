@@ -19,12 +19,15 @@ namespace BaseballClientGames
     public partial class Form1 : Form
     {
         private BaseballContext context;
-
+        private bool isAllQueriesSelected;
         public Form1()
         {
             InitializeComponent();
             button2.Enabled = false;
             button3.Enabled = false;
+            radioButton1.Select();
+            isAllQueriesSelected = true;
+
         }
 
         private void CreateContext()
@@ -56,6 +59,12 @@ namespace BaseballClientGames
             }
             else
             {
+                var checkedButton = groupBox1.Controls.OfType<RadioButton>()
+                                      .FirstOrDefault(r => r.Checked);
+                if (checkedButton.Name == "radioButton2")
+                {
+                    isAllQueriesSelected = false;
+                }
                 var connectionString = radDropDownList1.Text;
                 var tagID = this.seasonTagID.Text;
                 var teamIDsCSV = this.teamIDs.Text.Split(',');
@@ -106,39 +115,40 @@ namespace BaseballClientGames
                     {
 
                         List<ClientNonClientGames> NonClientGamesList = getClientNonClientGames(tagID, connectionString, dateTimeFrom.Value, dateTimeTo.Value, stringIDs);
-                        
-                        var tempNonClientStringIDs = "";
-                        var tempClientGamesIDs = "";
-                        string tempNonClientGamesDates = "";
+                        List<NonClientData> nonClientList = new List<NonClientData>();
                         foreach (var item in NonClientGamesList)
                         {
                             var nonClientDate = item.GameDate.Split('/');
                             var tempDate = nonClientDate[2].Substring(0, 4) + "-" + nonClientDate[0] + "-" + nonClientDate[1];
-                            tempNonClientGamesDates += tempDate + ", ";
-                            tempNonClientStringIDs += item.NonClientID.ToString() + ", ";
+                            nonClientList.Add(new NonClientData()
+                            {
+                                dtGameDate = tempDate,
+                                iGameID = item.NonClientID.ToString()
+                            });
                         }
-                        var stringNonClientIDs = tempNonClientStringIDs.Remove(tempNonClientStringIDs.Length - 2, 2).Split(',');
-
-                        foreach (var item in teamsList)
-                        {
-                            
-                            tempClientGamesIDs += item.iGameID.ToString() + ", ";
-                        }
-                        var nonClientGamesDates = tempNonClientGamesDates.Remove(tempNonClientGamesDates.Length - 2, 2).Split(',');
-                        var clientGamesIDs = tempClientGamesIDs.Remove(tempClientGamesIDs.Length - 2, 2).Split(',');
                         StringBuilder builder = new StringBuilder();
-
-                        
-                        for (int j = 0; j < stringNonClientIDs.Length; j++)
+                        foreach (var item in nonClientList)
                         {
-                            builder.Append("SELECT  g.iGameID, g.iTeamIDA, g.iTeamIDB, g.strGameName, g.dtGameDate FROM synergydb.tblGames g " +
-                                                "WHERE g.iSeasonTagID = "+ tagID +" " +
+                            if (isAllQueriesSelected)
+                            {
+                                builder.Append("SELECT g.iGameID, g.iTeamIDA, g.iTeamIDB, g.strGameName, g.dtGameDate FROM synergydb.tblGames g " +
+                                                "WHERE g.iSeasonTagID = " + tagID + " " +
                                                 "AND g.iLeagueID = 90 " +
-                                                "AND(g.iTeamIDA IN (" + stringNonClientIDs[j] + ") OR g.iTeamIDB IN (" + stringNonClientIDs[j] + ")) " +
-                                                "AND g.dtGameDate < '" + nonClientGamesDates[j] + "' " +
+                                                "AND(g.iTeamIDA IN (" + item.iGameID + ") OR g.iTeamIDB IN (" + item.iGameID + ")) " +
+                                                "AND g.dtGameDate < '" + item.dtGameDate + "' " +
+                                                "GROUP BY g.iGameID " +
+                                                "ORDER BY g.dtGameDate; ");
+                            }
+                            else
+                            {
+                                builder.Append("SELECT  g.iGameID, g.iTeamIDA, g.iTeamIDB, g.strGameName, g.dtGameDate FROM synergydb.tblGames g " +
+                                                "WHERE g.iSeasonTagID = " + tagID + " " +
+                                                "AND g.iLeagueID = 90 " +
+                                                "AND(g.iTeamIDA IN (" + item.iGameID + ") OR g.iTeamIDB IN (" + item.iGameID + ")) " +
+                                                "AND g.dtGameDate < '" + item.dtGameDate + "' " +
                                                 "ORDER BY g.dtGameDate DESC " +
                                                 "LIMIT 10; ");
-
+                            }
                         }
 
                         MySqlCommand scoutCommand = cn.CreateCommand();
@@ -170,7 +180,33 @@ namespace BaseballClientGames
                                               group scout by scout.iGameID
                                               into scouts
                                               select scouts.OrderByDescending(x => x.dtGameDate).Take(10).ToList();
-                        var count = scoutListResult.Count();
+                        ScoutTeamsList = new List<GameIDs>();
+                        foreach (var item in scoutListResult)
+                        {
+                            if(item.Count > 1)
+                            {
+                                var temp = item[0];
+                                ScoutTeamsList.Add(new GameIDs()
+                                {
+                                    iGameID = temp.iGameID,
+                                    iTeamIDA = temp.iTeamIDA,
+                                    iTeamIDB = temp.iTeamIDB,
+                                    strGameName = temp.strGameName,
+                                    dtGameDate = temp.dtGameDate
+                                });
+                            }
+                            else
+                            {
+                                ScoutTeamsList.Add(new GameIDs()
+                                {
+                                    iGameID = item[0].iGameID,
+                                    iTeamIDA = item[0].iTeamIDA,
+                                    iTeamIDB = item[0].iTeamIDB,
+                                    strGameName = item[0].strGameName,
+                                    dtGameDate = item[0].dtGameDate
+                                });
+                            }
+                        }
 
                         BindingSource bindingSource1 = new BindingSource();
                         dataGridView1.AutoGenerateColumns = false;
@@ -204,23 +240,46 @@ namespace BaseballClientGames
             using (cn)
             {
                 MySqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = "SELECT " +
-                                    "IF(h.bCustomer = 0, h.iTeamID, a.iTeamID) as NonClientID, " +
-                                    "IF(h.bCustomer = 0, h.strTeamName, a.strTeamName) as NonClientName, " +
-                                    "IF(h.bCustomer IN (" + stringIDs + "), h.strTeamName, a.strTeamName) as ClientName, " +
+                if (isAllQueriesSelected)
+                {
+                    cmd.CommandText = "SELECT " +
+                                    "IF(a.iTeamID in (" + stringIDs + "), h.iTeamID, a.iTeamID) as NonClientID, " +
+                                    "IF(a.iTeamID in (" + stringIDs + "), h.strTeamName, a.strTeamName) as NonClientName, " +
+                                    "IF(h.iTeamID in (" + stringIDs + "), h.strTeamName, a.strTeamName) as ClientName, " +
                                     "DATE(g.dtGameDate - INTERVAL 4 HOUR) as GameDate " +
                                     "FROM synergydb.tblGames g " +
                                     "JOIN synergydb.tblteams a on a.iTeamID = g.iTeamIDB " +
                                     "JOIN synergydb.tblteams h on h.iTeamID = g.iTeamIDA " +
 
-                                    "WHERE g.iSeasonTagID = "+ tagID + " "+
+                                    "WHERE g.iSeasonTagID = " + tagID + " " +
                                     "AND g.iLeagueID = 90 " +
                                     "AND(a.iTeamID in (" + stringIDs + ") OR h.iTeamID in (" + stringIDs + ")) " +
                                     "AND NOT (a.iTeamID in (" + stringIDs + ") AND h.iTeamID in (" + stringIDs + ")) " +
-                                    "AND DATE(g.dtGameDate - INTERVAL 5 HOUR) >= '" +dateTimeFrom.Year+"-"+dateTimeFrom.Month+"-"+dateTimeFrom.Day+"' " +
+                                    "AND DATE(g.dtGameDate - INTERVAL 5 HOUR) >= '" + dateTimeFrom.Year + "-" + dateTimeFrom.Month + "-" + dateTimeFrom.Day + "' " +
                                     "AND DATE(g.dtGameDate - INTERVAL 5 HOUR) <= '" + dateTimeTo.Year + "-" + dateTimeTo.Month + "-" + dateTimeTo.Day + "' " +
-                                    //"GROUP BY NonClientID HAVING MAX(GameDate) " +
+                                    "GROUP BY NonClientID HAVING MAX(GameDate) " +
                                     "ORDER BY GameDate; ";
+                }
+                else
+                {
+                    cmd.CommandText = "SELECT " +
+                                        "IF(h.bCustomer = 0, h.iTeamID, a.iTeamID) as NonClientID, " +
+                                        "IF(h.bCustomer = 0, h.strTeamName, a.strTeamName) as NonClientName, " +
+                                        "IF(h.bCustomer IN (" + stringIDs + "), h.strTeamName, a.strTeamName) as ClientName, " +
+                                        "DATE(g.dtGameDate - INTERVAL 4 HOUR) as GameDate " +
+                                        "FROM synergydb.tblGames g " +
+                                        "JOIN synergydb.tblteams a on a.iTeamID = g.iTeamIDB " +
+                                        "JOIN synergydb.tblteams h on h.iTeamID = g.iTeamIDA " +
+
+                                        "WHERE g.iSeasonTagID = " + tagID + " " +
+                                        "AND g.iLeagueID = 90 " +
+                                        "AND(a.iTeamID in (" + stringIDs + ") OR h.iTeamID in (" + stringIDs + ")) " +
+                                        "AND NOT (a.iTeamID in (" + stringIDs + ") AND h.iTeamID in (" + stringIDs + ")) " +
+                                        "AND DATE(g.dtGameDate - INTERVAL 5 HOUR) >= '" + dateTimeFrom.Year + "-" + dateTimeFrom.Month + "-" + dateTimeFrom.Day + "' " +
+                                        "AND DATE(g.dtGameDate - INTERVAL 5 HOUR) <= '" + dateTimeTo.Year + "-" + dateTimeTo.Month + "-" + dateTimeTo.Day + "' " +
+                                        //"GROUP BY NonClientID HAVING MAX(GameDate) " +
+                                        "ORDER BY GameDate; ";
+                }
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
