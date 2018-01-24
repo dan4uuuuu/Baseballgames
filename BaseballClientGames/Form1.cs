@@ -65,6 +65,10 @@ namespace BaseballClientGames
                 {
                     isAllQueriesSelected = false;
                 }
+                else
+                {
+                    isAllQueriesSelected = true;
+                }
                 var connectionString = radDropDownList1.Text;
                 var tagID = this.seasonTagID.Text;
                 var teamIDsCSV = this.teamIDs.Text.Split(',');
