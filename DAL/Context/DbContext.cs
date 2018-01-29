@@ -20,12 +20,12 @@ namespace DAL.Context
             string connectionString = "";
             if (database == "Test")
             {
-                connectionString = "Server=10.3.10.10;Database=operationsdb;Uid=root;Pwd=orinet05;";
+                connectionString = "Server=10.3.10.10;Database=operationsdb;Uid=root;Pwd=orinet05;Convert Zero Datetime=true;";
                 
             }
             if (database == "Production")
             {
-                connectionString = "Server=10.3.10.1;Database=operationsdb;Uid=readonly;Pwd=wasabionasmallplate;";
+                connectionString = "Server=10.3.10.1;Database=operationsdb;Uid=readonly;Pwd=wasabionasmallplate;Convert Zero Datetime=true;";
 
             }
             this.cn = new MySqlConnection(connectionString);

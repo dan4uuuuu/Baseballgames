@@ -40,18 +40,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.clientGamesLabel = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iGameIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iTeamIDADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iTeamIDBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.strGameNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtGameDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gameIDsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoutGamesLabel = new System.Windows.Forms.Label();
             this.dateTimeFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
@@ -60,13 +49,30 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.limitNumber = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.gameIDsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iGameIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iTeamIDBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iTeamIDADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.strGameNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtGameDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameIDsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameIDsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -152,8 +158,8 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iGameIDDataGridViewTextBoxColumn,
-            this.iTeamIDADataGridViewTextBoxColumn,
             this.iTeamIDBDataGridViewTextBoxColumn,
+            this.iTeamIDADataGridViewTextBoxColumn,
             this.strGameNameDataGridViewTextBoxColumn,
             this.dtGameDateDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.gameIDsBindingSource;
@@ -162,46 +168,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(736, 478);
             this.dataGridView1.TabIndex = 9;
-            // 
-            // iGameIDDataGridViewTextBoxColumn
-            // 
-            this.iGameIDDataGridViewTextBoxColumn.DataPropertyName = "iGameID";
-            this.iGameIDDataGridViewTextBoxColumn.HeaderText = "iGameID";
-            this.iGameIDDataGridViewTextBoxColumn.Name = "iGameIDDataGridViewTextBoxColumn";
-            this.iGameIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iTeamIDADataGridViewTextBoxColumn
-            // 
-            this.iTeamIDADataGridViewTextBoxColumn.DataPropertyName = "iTeamIDA";
-            this.iTeamIDADataGridViewTextBoxColumn.HeaderText = "iTeamIDA";
-            this.iTeamIDADataGridViewTextBoxColumn.Name = "iTeamIDADataGridViewTextBoxColumn";
-            this.iTeamIDADataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iTeamIDBDataGridViewTextBoxColumn
-            // 
-            this.iTeamIDBDataGridViewTextBoxColumn.DataPropertyName = "iTeamIDB";
-            this.iTeamIDBDataGridViewTextBoxColumn.HeaderText = "iTeamIDB";
-            this.iTeamIDBDataGridViewTextBoxColumn.Name = "iTeamIDBDataGridViewTextBoxColumn";
-            this.iTeamIDBDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // strGameNameDataGridViewTextBoxColumn
-            // 
-            this.strGameNameDataGridViewTextBoxColumn.DataPropertyName = "strGameName";
-            this.strGameNameDataGridViewTextBoxColumn.HeaderText = "strGameName";
-            this.strGameNameDataGridViewTextBoxColumn.Name = "strGameNameDataGridViewTextBoxColumn";
-            this.strGameNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.strGameNameDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // dtGameDateDataGridViewTextBoxColumn
-            // 
-            this.dtGameDateDataGridViewTextBoxColumn.DataPropertyName = "dtGameDate";
-            this.dtGameDateDataGridViewTextBoxColumn.HeaderText = "dtGameDate";
-            this.dtGameDateDataGridViewTextBoxColumn.Name = "dtGameDateDataGridViewTextBoxColumn";
-            this.dtGameDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // gameIDsBindingSource
-            // 
-            this.gameIDsBindingSource.DataSource = typeof(DAL.Models.GameIDs);
             // 
             // dataGridView2
             // 
@@ -212,8 +178,8 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.dataGridView2.DataSource = this.gameIDsBindingSource;
@@ -222,42 +188,6 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(735, 478);
             this.dataGridView2.TabIndex = 10;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "iGameID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "iGameID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "iTeamIDA";
-            this.dataGridViewTextBoxColumn2.HeaderText = "iTeamIDA";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "iTeamIDB";
-            this.dataGridViewTextBoxColumn3.HeaderText = "iTeamIDB";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "strGameName";
-            this.dataGridViewTextBoxColumn4.HeaderText = "strGameName";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "dtGameDate";
-            this.dataGridViewTextBoxColumn5.HeaderText = "dtGameDate";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // scoutGamesLabel
             // 
@@ -323,6 +253,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.limitNumber);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(157, 243);
@@ -331,6 +262,24 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Queries";
+            // 
+            // limitNumber
+            // 
+            this.limitNumber.Location = new System.Drawing.Point(145, 19);
+            this.limitNumber.Name = "limitNumber";
+            this.limitNumber.Size = new System.Drawing.Size(55, 20);
+            this.limitNumber.TabIndex = 19;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(78, 19);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(61, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Limit to:";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -343,22 +292,131 @@
             this.radioButton1.Text = "Get All";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // checkBox1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(97, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Limit to 10";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(16, 290);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(138, 17);
+            this.checkBox1.TabIndex = 19;
+            this.checkBox1.Text = "Power five conferences";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(777, 290);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(138, 17);
+            this.checkBox2.TabIndex = 20;
+            this.checkBox2.Text = "Power five conferences";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // gameIDsBindingSource
+            // 
+            this.gameIDsBindingSource.DataSource = typeof(DAL.Models.GameIDs);
+            // 
+            // iGameIDDataGridViewTextBoxColumn
+            // 
+            this.iGameIDDataGridViewTextBoxColumn.DataPropertyName = "iGameID";
+            this.iGameIDDataGridViewTextBoxColumn.HeaderText = "iGameID";
+            this.iGameIDDataGridViewTextBoxColumn.Name = "iGameIDDataGridViewTextBoxColumn";
+            this.iGameIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iTeamIDBDataGridViewTextBoxColumn
+            // 
+            this.iTeamIDBDataGridViewTextBoxColumn.DataPropertyName = "iTeamIDB";
+            this.iTeamIDBDataGridViewTextBoxColumn.HeaderText = "Visitor";
+            this.iTeamIDBDataGridViewTextBoxColumn.Name = "iTeamIDBDataGridViewTextBoxColumn";
+            this.iTeamIDBDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iTeamIDADataGridViewTextBoxColumn
+            // 
+            this.iTeamIDADataGridViewTextBoxColumn.DataPropertyName = "iTeamIDA";
+            this.iTeamIDADataGridViewTextBoxColumn.HeaderText = "Home";
+            this.iTeamIDADataGridViewTextBoxColumn.Name = "iTeamIDADataGridViewTextBoxColumn";
+            this.iTeamIDADataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // strGameNameDataGridViewTextBoxColumn
+            // 
+            this.strGameNameDataGridViewTextBoxColumn.DataPropertyName = "strGameName";
+            this.strGameNameDataGridViewTextBoxColumn.HeaderText = "Game Name";
+            this.strGameNameDataGridViewTextBoxColumn.Name = "strGameNameDataGridViewTextBoxColumn";
+            this.strGameNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.strGameNameDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // dtGameDateDataGridViewTextBoxColumn
+            // 
+            this.dtGameDateDataGridViewTextBoxColumn.DataPropertyName = "dtGameDate";
+            this.dtGameDateDataGridViewTextBoxColumn.HeaderText = "Datetime";
+            this.dtGameDateDataGridViewTextBoxColumn.Name = "dtGameDateDataGridViewTextBoxColumn";
+            this.dtGameDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "iGameID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "iGameID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "iTeamIDB";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Visitor";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "iTeamIDA";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Home";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "strGameName";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Game Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "dtGameDate";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Datetime";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(777, 267);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(135, 17);
+            this.checkBox3.TabIndex = 21;
+            this.checkBox3.Text = "Non Client Games Only";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(777, 244);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(126, 17);
+            this.checkBox4.TabIndex = 22;
+            this.checkBox4.Text = "Include Client Games";
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1516, 847);
+            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -381,10 +439,10 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameIDsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameIDsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,17 +460,7 @@
         private System.Windows.Forms.Label clientGamesLabel;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource gameIDsBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iGameIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iTeamIDADataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iTeamIDBDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn strGameNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dtGameDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.Label scoutGamesLabel;
         private System.Windows.Forms.DateTimePicker dateTimeFrom;
         private System.Windows.Forms.DateTimePicker dateTimeTo;
@@ -423,6 +471,22 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.TextBox limitNumber;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iGameIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iTeamIDBDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iTeamIDADataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn strGameNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtGameDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }
 
